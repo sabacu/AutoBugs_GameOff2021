@@ -1,0 +1,978 @@
+[gd_scene load_steps=24 format=2]
+
+[ext_resource path="res://Assets/scenario.png" type="Texture" id=1]
+[ext_resource path="res://Assets/front_elements.png" type="Texture" id=2]
+[ext_resource path="res://Assets/cheese.png" type="Texture" id=3]
+[ext_resource path="res://Scenes/Obstaculo.gd" type="Script" id=4]
+[ext_resource path="res://Chars/CartTest1.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/World.gd" type="Script" id=6]
+[ext_resource path="res://Chars/Player.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Assets/Menu and Credits/countdown3.png" type="Texture" id=8]
+[ext_resource path="res://Assets/Menu and Credits/countdown2.png" type="Texture" id=9]
+[ext_resource path="res://Assets/Menu and Credits/countdown1.png" type="Texture" id=10]
+[ext_resource path="res://Assets/Menu and Credits/countdown_go.png" type="Texture" id=11]
+[ext_resource path="res://Scenes/CheckRaceStat.gd" type="Script" id=12]
+[ext_resource path="res://Scenes/Placar.gd" type="Script" id=13]
+[ext_resource path="res://Assets/Menu and Credits/ant_normal.png" type="Texture" id=14]
+[ext_resource path="res://Chars/CartTest2.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Chars/CartTest3.tscn" type="PackedScene" id=16]
+[ext_resource path="res://Assets/Sounds/DefensePostBuy.wav" type="AudioStream" id=17]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 179.314, 47.4419 )
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 15.1327
+
+[sub_resource type="Animation" id=3]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("StartCamera:zoom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 5, 5 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CountDown/CountDown2:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("CountDown/CountDown:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("CountDown/CountDown:texture")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ ExtResource( 8 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "finish"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("CountDown/CountDown2:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "start"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("StartCamera:zoom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 5 ),
+"transitions": PoolRealArray( 2, 1 ),
+"update": 0,
+"values": [ Vector2( 5, 5 ), Vector2( 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CountDown/CountDown2:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("CountDown/CountDown:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.8, 1, 5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("CountDown/CountDown:texture")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 1, 2, 3, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ) ]
+}
+tracks/4/type = "method"
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0.6, 4, 5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "stop_music"
+}, {
+"args": [  ],
+"method": "play_race_music"
+}, {
+"args": [  ],
+"method": "start_race"
+} ]
+}
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 149.5, 18 )
+
+[node name="World" type="Node2D"]
+script = ExtResource( 6 )
+
+[node name="DinamicElements" type="YSort" parent="."]
+
+[node name="Scenario" type="Node2D" parent="DinamicElements"]
+
+[node name="BG" type="Sprite" parent="DinamicElements/Scenario"]
+texture = ExtResource( 1 )
+
+[node name="DinamicElements" type="Sprite" parent="DinamicElements/Scenario"]
+z_index = 1
+texture = ExtResource( 1 )
+
+[node name="FrontElements" type="Sprite" parent="DinamicElements/Scenario"]
+z_index = 10
+texture = ExtResource( 2 )
+
+[node name="Barrier1" type="StaticBody2D" parent="DinamicElements/Scenario"]
+position = Vector2( -1287, -538 )
+z_index = 1
+collision_mask = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DinamicElements/Scenario/Barrier1"]
+polygon = PoolVector2Array( 1084, 464, 710, -51, 502, -302, 202, -559, 31, -662, -245, -801, -405, -837, -573, -821, -676, -780, -730, -710, -758, -544, -756, -348, -723, -154, -633, 86, -459, 307, -265, 475, -35, 573, 220, 614, 562, 598, 794, 560 )
+
+[node name="Barrier2" type="StaticBody2D" parent="DinamicElements/Scenario"]
+position = Vector2( 1437, 598 )
+z_index = 1
+collision_mask = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DinamicElements/Scenario/Barrier2"]
+polygon = PoolVector2Array( -1119, -528, -751, -638, -327, -676, -38, -636, 232, -525, 466, -303, 615, -82, 678, 87, 713, 354, 703, 594, 648, 702, 547, 768, 388, 793, 136, 735, -244, 516, -506, 299, -781, -16 )
+
+[node name="Barrier3" type="StaticBody2D" parent="DinamicElements/Scenario"]
+position = Vector2( 1437, 598 )
+z_index = 1
+collision_mask = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DinamicElements/Scenario/Barrier3"]
+polygon = PoolVector2Array( -1435, -399, -1045, 139, -830, 412, -487, 724, -221, 899, 105, 1044, 344, 1098, 573, 1084, 812, 977, 939, 808, 997, 647, 1010, 432, 996, 169, 929, -96, 832, -295, 697, -476, 593, -598, 1229, -598, 1235, 1343, -1160, 1353, -1674, 304, -3218, 435, -4113, -157, -4106, -601, -3390, -604, -3178, -426, -2902, -291, -2562, -221, -2189, -217, -1839, -291, -1566, -359 )
+
+[node name="Barrier4" type="StaticBody2D" parent="DinamicElements/Scenario"]
+position = Vector2( 1437, 598 )
+z_index = 1
+collision_mask = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DinamicElements/Scenario/Barrier4"]
+polygon = PoolVector2Array( 1231, -604, 597, -593, 344, -810, -2, -942, -333, -971, -676, -953, -1039, -871, -1338, -778, -1752, -1352, -2030, -1676, -2301, -1911, -2600, -2100, -2910, -2250, -3195, -2286, -3448, -2232, -3655, -2097, -3747, -1908, -3779, -1683, -3779, -1398, -3719, -1124, -3598, -878, -3398, -607, -4111, -600, -4097, -2549, -1752, -2539, -936, -1587, 579, -1348, 1224, -1124 )
+
+[node name="Barrier6" type="StaticBody2D" parent="DinamicElements/Scenario"]
+position = Vector2( 1683, 911 )
+z_index = 1
+collision_layer = 512
+collision_mask = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="DinamicElements/Scenario/Barrier6"]
+polygon = PoolVector2Array( -1642, -673, -1338, -778, -1384, -841, -1686, -735 )
+
+[node name="Obstaculo" type="Area2D" parent="DinamicElements"]
+position = Vector2( 154, 122 )
+z_index = 1
+collision_layer = 256
+collision_mask = 6
+script = ExtResource( 4 )
+
+[node name="Cheese" type="Sprite" parent="DinamicElements/Obstaculo"]
+position = Vector2( -130, -89 )
+texture = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DinamicElements/Obstaculo"]
+position = Vector2( 46.5492, 52.6518 )
+rotation = -0.365169
+shape = SubResource( 1 )
+
+[node name="Route1" type="Node2D" parent="."]
+
+[node name="Point1" type="Area2D" parent="Route1"]
+position = Vector2( 1066, -309 )
+collision_layer = 8
+collision_mask = 4
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Route1/Point1"]
+shape = SubResource( 2 )
+
+[node name="Point2" type="Area2D" parent="Route1"]
+position = Vector2( 1793, -116 )
+collision_layer = 8
+collision_mask = 4
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Route1/Point2"]
+shape = SubResource( 2 )
+
+[node name="Point3" type="Area2D" parent="Route1"]
+position = Vector2( 2267, 412 )
+collision_layer = 8
+collision_mask = 4
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Route1/Point3"]
+shape = SubResource( 2 )
+
+[node name="Point4" type="Area2D" parent="Route1"]
+position = Vector2( 2364, 1313 )
+collision_layer = 8
+collision_mask = 4
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Route1/Point4"]
+shape = SubResource( 2 )
+
+[node name="Point5" type="Area2D" parent="Route1"]
+position = Vector2( 1804, 1635 )
+collision_layer = 8
+collision_mask = 4
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Route1/Point5"]
+shape = SubResource( 2 )
+
+[node name="Point6" type="Area2D" parent="Route1"]
+position = Vector2( 1150, 1387 )
+collision_layer = 8
+collision_mask = 4
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Route1/Point6"]
+shape = SubResource( 2 )
+
+[node name="Point7" type="Area2D" parent="Route1"]
+position = Vector2( 599, 951 )
+collision_layer = 8
+collision_mask = 4
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Route1/Point7"]
+shape = SubResource( 2 )
+
+[node name="Point8" type="Area2D" parent="Route1"]
+position = Vector2( 255, 414 )
+collision_layer = 8
+collision_mask = 4
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Route1/Point8"]
+shape = SubResource( 2 )
+
+[node name="Point9" type="Area2D" parent="Route1"]
+position = Vector2( -361, -444 )
+collision_layer = 8
+collision_mask = 4
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Route1/Point9"]
+shape = SubResource( 2 )
+
+[node name="Point10" type="Area2D" parent="Route1"]
+position = Vector2( -748, -899 )
+collision_layer = 8
+collision_mask = 4
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Route1/Point10"]
+shape = SubResource( 2 )
+
+[node name="Point11" type="Area2D" parent="Route1"]
+position = Vector2( -1231, -1293 )
+collision_layer = 8
+collision_mask = 4
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Route1/Point11"]
+shape = SubResource( 2 )
+
+[node name="Point12" type="Area2D" parent="Route1"]
+position = Vector2( -1896, -1429 )
+collision_layer = 8
+collision_mask = 4
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Route1/Point12"]
+shape = SubResource( 2 )
+
+[node name="Point13" type="Area2D" parent="Route1"]
+position = Vector2( -2150, -1209 )
+collision_layer = 8
+collision_mask = 4
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Route1/Point13"]
+shape = SubResource( 2 )
+
+[node name="Point14" type="Area2D" parent="Route1"]
+position = Vector2( -2086, -671 )
+collision_layer = 8
+collision_mask = 4
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Route1/Point14"]
+shape = SubResource( 2 )
+
+[node name="Point15" type="Area2D" parent="Route1"]
+position = Vector2( -1717, -103 )
+collision_layer = 8
+collision_mask = 4
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Route1/Point15"]
+shape = SubResource( 2 )
+
+[node name="Point16" type="Area2D" parent="Route1"]
+position = Vector2( -1136, 160 )
+collision_layer = 8
+collision_mask = 4
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Route1/Point16"]
+shape = SubResource( 2 )
+
+[node name="Point17" type="Area2D" parent="Route1"]
+position = Vector2( -271, 20 )
+collision_layer = 8
+collision_mask = 4
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Route1/Point17"]
+shape = SubResource( 2 )
+
+[node name="Route2" type="Node2D" parent="."]
+position = Vector2( -72, 53 )
+
+[node name="Point1" type="Area2D" parent="Route2"]
+position = Vector2( 1142, -253 )
+collision_layer = 8
+collision_mask = 4
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Route2/Point1"]
+shape = SubResource( 2 )
+
+[node name="Point2" type="Area2D" parent="Route2"]
+position = Vector2( 1793, -116 )
+collision_layer = 8
+collision_mask = 4
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Route2/Point2"]
+shape = SubResource( 2 )
+
+[node name="Point3" type="Area2D" parent="Route2"]
+position = Vector2( 2267, 412 )
+collision_layer = 8
+collision_mask = 4
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Route2/Point3"]
+shape = SubResource( 2 )
+
+[node name="Point4" type="Area2D" parent="Route2"]
+position = Vector2( 2339, 1203 )
+collision_layer = 8
+collision_mask = 4
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Route2/Point4"]
+shape = SubResource( 2 )
+
+[node name="Point5" type="Area2D" parent="Route2"]
+position = Vector2( 1857, 1475 )
+collision_layer = 8
+collision_mask = 4
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Route2/Point5"]
+shape = SubResource( 2 )
+
+[node name="Point6" type="Area2D" parent="Route2"]
+position = Vector2( 1271, 1248 )
+collision_layer = 8
+collision_mask = 4
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Route2/Point6"]
+shape = SubResource( 2 )
+
+[node name="Point7" type="Area2D" parent="Route2"]
+position = Vector2( 752, 837 )
+collision_layer = 8
+collision_mask = 4
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Route2/Point7"]
+shape = SubResource( 2 )
+
+[node name="Point8" type="Area2D" parent="Route2"]
+position = Vector2( 415, 296 )
+collision_layer = 8
+collision_mask = 4
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Route2/Point8"]
+shape = SubResource( 2 )
+
+[node name="Point9" type="Area2D" parent="Route2"]
+position = Vector2( -197, -526 )
+collision_layer = 8
+collision_mask = 4
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Route2/Point9"]
+shape = SubResource( 2 )
+
+[node name="Point10" type="Area2D" parent="Route2"]
+position = Vector2( -605, -1027 )
+collision_layer = 8
+collision_mask = 4
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Route2/Point10"]
+shape = SubResource( 2 )
+
+[node name="Point11" type="Area2D" parent="Route2"]
+position = Vector2( -1117, -1418 )
+collision_layer = 8
+collision_mask = 4
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Route2/Point11"]
+shape = SubResource( 2 )
+
+[node name="Point12" type="Area2D" parent="Route2"]
+position = Vector2( -1832, -1564 )
+collision_layer = 8
+collision_mask = 4
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Route2/Point12"]
+shape = SubResource( 2 )
+
+[node name="Point13" type="Area2D" parent="Route2"]
+position = Vector2( -2143, -1309 )
+collision_layer = 8
+collision_mask = 4
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Route2/Point13"]
+shape = SubResource( 2 )
+
+[node name="Point14" type="Area2D" parent="Route2"]
+position = Vector2( -2097, -739 )
+collision_layer = 8
+collision_mask = 4
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Route2/Point14"]
+shape = SubResource( 2 )
+
+[node name="Point15" type="Area2D" parent="Route2"]
+position = Vector2( -1742, -96 )
+collision_layer = 8
+collision_mask = 4
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Route2/Point15"]
+shape = SubResource( 2 )
+
+[node name="Point16" type="Area2D" parent="Route2"]
+position = Vector2( -1087, 205 )
+collision_layer = 8
+collision_mask = 4
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Route2/Point16"]
+shape = SubResource( 2 )
+
+[node name="Point17" type="Area2D" parent="Route2"]
+position = Vector2( -118, 56 )
+collision_layer = 8
+collision_mask = 4
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Route2/Point17"]
+shape = SubResource( 2 )
+
+[node name="Route3" type="Node2D" parent="."]
+position = Vector2( -176, -19 )
+
+[node name="Point1" type="Area2D" parent="Route3"]
+position = Vector2( 1142, -253 )
+collision_layer = 8
+collision_mask = 4
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Route3/Point1"]
+shape = SubResource( 2 )
+
+[node name="Point2" type="Area2D" parent="Route3"]
+position = Vector2( 1793, -116 )
+collision_layer = 8
+collision_mask = 4
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Route3/Point2"]
+shape = SubResource( 2 )
+
+[node name="Point3" type="Area2D" parent="Route3"]
+position = Vector2( 2288, 376 )
+collision_layer = 8
+collision_mask = 4
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Route3/Point3"]
+shape = SubResource( 2 )
+
+[node name="Point4" type="Area2D" parent="Route3"]
+position = Vector2( 2440, 1171 )
+collision_layer = 8
+collision_mask = 4
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Route3/Point4"]
+shape = SubResource( 2 )
+
+[node name="Point5" type="Area2D" parent="Route3"]
+position = Vector2( 2097, 1575 )
+collision_layer = 8
+collision_mask = 4
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Route3/Point5"]
+shape = SubResource( 2 )
+
+[node name="Point6" type="Area2D" parent="Route3"]
+position = Vector2( 1268, 1247 )
+collision_layer = 8
+collision_mask = 4
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Route3/Point6"]
+shape = SubResource( 2 )
+
+[node name="Point7" type="Area2D" parent="Route3"]
+position = Vector2( 914, 842 )
+collision_layer = 8
+collision_mask = 4
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Route3/Point7"]
+shape = SubResource( 2 )
+
+[node name="Point8" type="Area2D" parent="Route3"]
+position = Vector2( 502, 268 )
+collision_layer = 8
+collision_mask = 4
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Route3/Point8"]
+shape = SubResource( 2 )
+
+[node name="Point9" type="Area2D" parent="Route3"]
+position = Vector2( -31, -486 )
+collision_layer = 8
+collision_mask = 4
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Route3/Point9"]
+shape = SubResource( 2 )
+
+[node name="Point10" type="Area2D" parent="Route3"]
+position = Vector2( -445, -1006 )
+collision_layer = 8
+collision_mask = 4
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Route3/Point10"]
+shape = SubResource( 2 )
+
+[node name="Point11" type="Area2D" parent="Route3"]
+position = Vector2( -962, -1394 )
+collision_layer = 8
+collision_mask = 4
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Route3/Point11"]
+shape = SubResource( 2 )
+
+[node name="Point12" type="Area2D" parent="Route3"]
+position = Vector2( -1725, -1585 )
+collision_layer = 8
+collision_mask = 4
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Route3/Point12"]
+shape = SubResource( 2 )
+
+[node name="Point13" type="Area2D" parent="Route3"]
+position = Vector2( -2058, -1333 )
+collision_layer = 8
+collision_mask = 4
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Route3/Point13"]
+shape = SubResource( 2 )
+
+[node name="Point14" type="Area2D" parent="Route3"]
+position = Vector2( -2097, -739 )
+collision_layer = 8
+collision_mask = 4
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Route3/Point14"]
+shape = SubResource( 2 )
+
+[node name="Point15" type="Area2D" parent="Route3"]
+position = Vector2( -1742, -96 )
+collision_layer = 8
+collision_mask = 4
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Route3/Point15"]
+shape = SubResource( 2 )
+
+[node name="Point16" type="Area2D" parent="Route3"]
+position = Vector2( -1087, 205 )
+collision_layer = 8
+collision_mask = 4
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Route3/Point16"]
+shape = SubResource( 2 )
+
+[node name="Point17" type="Area2D" parent="Route3"]
+position = Vector2( -177, 144 )
+collision_layer = 8
+collision_mask = 4
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Route3/Point17"]
+shape = SubResource( 2 )
+
+[node name="Chars" type="YSort" parent="."]
+z_index = 2
+
+[node name="CartTest1" parent="Chars" instance=ExtResource( 5 )]
+position = Vector2( 251, -153 )
+
+[node name="Player" parent="Chars" instance=ExtResource( 7 )]
+position = Vector2( 491, -64 )
+rotation = -0.462071
+
+[node name="CartTest2" parent="Chars" instance=ExtResource( 15 )]
+position = Vector2( 172, -1 )
+
+[node name="CartTest3" parent="Chars" instance=ExtResource( 16 )]
+position = Vector2( -12, -58 )
+
+[node name="StartCamera" type="Camera2D" parent="."]
+current = true
+zoom = Vector2( 5, 5 )
+
+[node name="CountDown" type="CanvasLayer" parent="."]
+
+[node name="AnimStart" type="AnimationPlayer" parent="CountDown"]
+root_node = NodePath("../..")
+autoplay = "start"
+anims/RESET = SubResource( 3 )
+anims/finish = SubResource( 6 )
+anims/start = SubResource( 4 )
+
+[node name="CountDown2" type="ColorRect" parent="CountDown"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CountDown" type="TextureRect" parent="CountDown"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Placar" type="Control" parent="CountDown"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 13 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FirstPlace" type="Control" parent="CountDown/Placar"]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FirstSprite" type="Sprite" parent="CountDown/Placar/FirstPlace"]
+position = Vector2( 952.4, 44 )
+scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 14 )
+
+[node name="First" type="Sprite" parent="CountDown/Placar/FirstPlace"]
+position = Vector2( 942.4, 75 )
+scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 10 )
+
+[node name="SecondPlace" type="Control" parent="CountDown/Placar"]
+margin_top = 57.0
+margin_right = 40.0
+margin_bottom = 97.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FirstSprite" type="Sprite" parent="CountDown/Placar/SecondPlace"]
+position = Vector2( 952.4, 44 )
+scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 14 )
+
+[node name="First" type="Sprite" parent="CountDown/Placar/SecondPlace"]
+position = Vector2( 976, 75 )
+scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 9 )
+
+[node name="ThirdPlace" type="Control" parent="CountDown/Placar"]
+margin_top = 114.0
+margin_right = 40.0
+margin_bottom = 154.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FirstSprite" type="Sprite" parent="CountDown/Placar/ThirdPlace"]
+position = Vector2( 952.4, 44 )
+scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 14 )
+
+[node name="First" type="Sprite" parent="CountDown/Placar/ThirdPlace"]
+position = Vector2( 1006, 75 )
+scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 8 )
+
+[node name="PlacarPosition" type="AudioStreamPlayer" parent="CountDown/Placar"]
+stream = ExtResource( 17 )
+
+[node name="CheckRace" type="Node2D" parent="."]
+
+[node name="Check1" type="Area2D" parent="CheckRace"]
+position = Vector2( 1903, 93 )
+rotation = 0.00140839
+z_index = 1
+collision_layer = 1024
+collision_mask = 0
+script = ExtResource( 12 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CheckRace/Check1"]
+position = Vector2( 5, -0.00708008 )
+rotation = -0.697015
+shape = SubResource( 5 )
+
+[node name="Check2" type="Area2D" parent="CheckRace"]
+position = Vector2( 819, 1001 )
+rotation = 0.00140839
+z_index = 1
+collision_layer = 2048
+collision_mask = 0
+script = ExtResource( 12 )
+Check = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CheckRace/Check2"]
+position = Vector2( 5, -0.00708008 )
+rotation = -0.697015
+shape = SubResource( 5 )
+
+[node name="Check3" type="Area2D" parent="CheckRace"]
+position = Vector2( -1750, -1539 )
+rotation = 0.00140839
+z_index = 1
+collision_layer = 4096
+collision_mask = 0
+script = ExtResource( 12 )
+Check = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CheckRace/Check3"]
+position = Vector2( 5, -0.00708008 )
+rotation = -1.52892
+shape = SubResource( 5 )
+
+[node name="Check4" type="Area2D" parent="CheckRace"]
+position = Vector2( 529, -153 )
+rotation = -0.410227
+z_index = 1
+collision_layer = 8192
+collision_mask = 0
+script = ExtResource( 12 )
+Check = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CheckRace/Check4"]
+position = Vector2( 5, -0.00708008 )
+rotation = -1.81647
+shape = SubResource( 5 )

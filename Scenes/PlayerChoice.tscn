@@ -1,0 +1,140 @@
+[gd_scene load_steps=19 format=2]
+
+[ext_resource path="res://Assets/Menu and Credits/select_buttom.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Menu and Credits/bee_click.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Menu and Credits/ant_hoover.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Menu and Credits/ant_normal.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Menu and Credits/cockroach_click.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Menu and Credits/cockroach_normal.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Menu and Credits/cockroach_hoover.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Menu and Credits/fly_hoover.png" type="Texture" id=8]
+[ext_resource path="res://Assets/Menu and Credits/fly_normal.png" type="Texture" id=9]
+[ext_resource path="res://Assets/Menu and Credits/fly_click.png" type="Texture" id=10]
+[ext_resource path="res://Assets/Menu and Credits/bee_hoover.png" type="Texture" id=11]
+[ext_resource path="res://Assets/Menu and Credits/bee_normal.png" type="Texture" id=12]
+[ext_resource path="res://Assets/Sounds/DefensePostHoover.wav" type="AudioStream" id=13]
+[ext_resource path="res://Scenes/PlayerChoice.gd" type="Script" id=14]
+[ext_resource path="res://Assets/Sounds/DefensePostBuy.wav" type="AudioStream" id=15]
+[ext_resource path="res://Assets/Menu and Credits/ant_click.png" type="Texture" id=16]
+
+[sub_resource type="Animation" id=1]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Fade:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "start"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Fade:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 0.5, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[node name="About" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 14 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.756863, 0.756863, 0.756863, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Fade" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PlayersChoise" type="HBoxContainer" parent="."]
+margin_left = -23.0
+margin_top = -59.0
+margin_right = 1029.0
+margin_bottom = 600.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Ant" type="TextureButton" parent="PlayersChoise"]
+margin_right = 260.0
+margin_bottom = 659.0
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 16 )
+texture_hover = ExtResource( 3 )
+
+[node name="Cocroach" type="TextureButton" parent="PlayersChoise"]
+margin_left = 264.0
+margin_right = 524.0
+margin_bottom = 659.0
+texture_normal = ExtResource( 6 )
+texture_pressed = ExtResource( 5 )
+texture_hover = ExtResource( 7 )
+
+[node name="Fly" type="TextureButton" parent="PlayersChoise"]
+margin_left = 528.0
+margin_right = 788.0
+margin_bottom = 659.0
+texture_normal = ExtResource( 9 )
+texture_pressed = ExtResource( 10 )
+texture_hover = ExtResource( 8 )
+
+[node name="Bee" type="TextureButton" parent="PlayersChoise"]
+margin_left = 792.0
+margin_right = 1052.0
+margin_bottom = 659.0
+texture_normal = ExtResource( 12 )
+texture_pressed = ExtResource( 2 )
+texture_hover = ExtResource( 11 )
+
+[node name="Anim" type="AnimationPlayer" parent="."]
+autoplay = "start"
+anims/RESET = SubResource( 1 )
+anims/start = SubResource( 2 )
+
+[node name="Hover" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 13 )
+bus = "UI"
+
+[node name="Click" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 15 )
+bus = "UI"
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 493, 683 )
+scale = Vector2( 0.7, 0.7 )
+texture = ExtResource( 1 )
+
+[connection signal="mouse_entered" from="PlayersChoise/Ant" to="." method="_on_Ant_mouse_entered"]
+[connection signal="pressed" from="PlayersChoise/Ant" to="." method="_on_Ant_pressed"]
+[connection signal="mouse_entered" from="PlayersChoise/Cocroach" to="." method="_on_Cocroach_mouse_entered"]
+[connection signal="pressed" from="PlayersChoise/Cocroach" to="." method="_on_Cocroach_pressed"]
+[connection signal="mouse_entered" from="PlayersChoise/Fly" to="." method="_on_Fly_mouse_entered"]
+[connection signal="pressed" from="PlayersChoise/Fly" to="." method="_on_Fly_pressed"]
+[connection signal="mouse_entered" from="PlayersChoise/Bee" to="." method="_on_Bee_mouse_entered"]
+[connection signal="pressed" from="PlayersChoise/Bee" to="." method="_on_Bee_pressed"]

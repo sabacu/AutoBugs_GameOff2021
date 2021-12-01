@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/fase_01.wav-031cc2f6162e04f0a779c961fe9c4f66.sample"
+
+[deps]
+
+source_file="res://Musics/fase_01.wav"
+dest_files=[ "res://.import/fase_01.wav-031cc2f6162e04f0a779c961fe9c4f66.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

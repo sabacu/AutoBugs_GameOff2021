@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/DefensePostClick.wav-daad7afea17a9ad1b415f543f10d6bdb.sample"
+
+[deps]
+
+source_file="res://Assets/Sounds/DefensePostClick.wav"
+dest_files=[ "res://.import/DefensePostClick.wav-daad7afea17a9ad1b415f543f10d6bdb.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
